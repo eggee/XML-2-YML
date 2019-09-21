@@ -1,3 +1,7 @@
+# This is how i would like the new *.yml file to look.
+# could maybe use a 'base' template file with empty fields to be populated
+# into a newly created output.yml file.
+
 olts:
     model-name: "16-port TECH BOX"
     management-domain-static-ipv4:

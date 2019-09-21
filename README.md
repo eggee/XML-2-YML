@@ -1,6 +1,6 @@
 Please help me with a python script to extract data from fields
 in an xml file and insert it into certain fields within a
-yml file that will ensure a specific xml hierarchy.
+yml file that matches a specific yml hierarchy.
 
 The YML-Sample.yml is an exact version of how i want the
 file to look after it gets the specific field data from
