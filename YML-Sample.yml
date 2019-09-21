@@ -1,0 +1,42 @@
+olts:
+    model-name: "16-port TECH BOX"
+    management-domain-static-ipv4:
+        mask: "255.255.255.0"
+        gateway: "10.214.254.254"
+    INSTANCES:
+        - name: "olt3"
+          management-domain-static-ipv4:
+              ip-address: "10.214.254.47"
+
+onus:
+    OBJECT-TYPE: "device"
+    model-name: "ta_401"
+    INSTANCES:
+        - name: "ont_5"
+          interface-names: ['TECH Service']
+          object-parameters:
+              serial-number: "ADTN18423D62"
+              onu-id: "5"
+
+#BONUS SECTION: Populate the below fields for bonus points
+
+bundle:
+    INSTANCES:
+        - name: "XYZ-TECH-CP-4391-4"
+          bundle-id: "4391/4"
+
+olt-ont-interfaces:
+    OBJECT-TYPE: "interface"
+    interface-type: "gpon"
+    number-of-lower-layer-interfaces: 1
+    profile-name: "XPON Profile Vector"
+    INSTANCES:
+        - name: "GPON_interface_15"
+          interface-id: "olt_down_pon15"
+          device-name: "olt3_pon15"
+          lower-layer-interfaces: ['channel 15']
+          bundle-name: "XYZ-TECH-CP-4391-4"
+
+
+
+

@@ -1,0 +1,14 @@
+  <device id="olt3" name="olt1" product="16-port TECH BOX" part_number="11971305F1" outer_vlan_id="1335">
+    <ports>
+      <port id="olt_down_pon15" name="pon15" role="downstream" gpon="TECH_interface_15"
+	      channel_id="channel 15" bundle_name="ChannelPartition" bundle_id= "4391/4"/>
+    </ports>
+    <mgmt>
+      <link link_type="netconf" host="10.214.254.47" port="830" username="admin" password="password" netmask="255.255.255.0" gateway="10.214.254.254"/>
+      <link link_type="rootsh" host="10.214.254.47" port="22" username="hsvroot" password="BOSCO" netmask="255.255.255.0" gateway="10.214.254.254"/>
+    </mgmt>
+  </device>
+   <device id="ont_5" name="onu 4.0" product="ta_401" part_number="1287786F1" serial_number_string="ADTN18423D62"
+        cp="channel-partition 4391.4" preferred_channel_pair="channel 15" protection_channel_pair="channel 15"
+        provider_id="bng_1" provider_if_name="ae 32" service_name="TECH Service" outer_vlan_id="272" inner_vlan_id="2257">
+  </device>
