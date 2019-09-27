@@ -29,6 +29,12 @@ for child in root:
     print(child.attrib['product'])
     print(child.attrib['name'])
 
+for child in root:
+    if child == 'outer_vlan_id':
+        print(child.attrib['outer_vlan_id'])
+        print(child.attrib['outer_vlan_id'])
+        print(child.attrib['outer_vlan_id'])
+
 #
 # if tree._root._children[0].attrib['name'] == 'olt1':
 #     print("found it")
