@@ -4,7 +4,8 @@ yml file that matches a specific yml hierarchy.
 
 To run what i have thusfar:
 
->python simple_xml_parser.py XML-Input.xml YML-Output.yml
+$ ./simple_xml_parser.py XML-Input.xml YML-Output.yml
+
 
 This will print the extracted xml fields to the console.
 I next need to get those values into a yml formated file similar
