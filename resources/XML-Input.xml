@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<testbed name="Tek-1">
-  <device id="olt3" name="olt1" product="16-port TECH BOX" part_number="11971305F1" outer_vlan_id="1335">
+<testbed name="MCI 9">
+  <device id="ont_5" name="onu 4.0" product="ta_401" part_number="1287786F1" serial_number_string="ADTN14470B97"
+        cp="channel-partition 4391.4" preferred_channel_pair="channel 15" protection_channel_pair="channel 15"
+        provider_id="bng_1" provider_if_name="ae 32" service_name="GPON Service" outer_vlan_id="272" inner_vlan_id="2257">
+  </device>
+  <device id="olt3" name="olt1" product="sdx6010_16port" part_number="11971305F1" outer_vlan_id="1335">
     <ports>
-      <port id="olt_down_pon15" name="pon15" role="downstream" gpon="TECH_interface_15"
-	      channel_id="channel 15" bundle_name="ChannelPartition" bundle_id= "4391/4"/>
+      <port id="olt_down_pon15" name="pon15" role="downstream" gpon="GPON_interface_15"
+	      channel_id="channel 15" bundle_name="ChannelPartition" bundle_id= "4391/1"/>
     </ports>
     <mgmt>
-      <link link_type="netconf" host="10.214.254.47" port="830" username="admin" password="password" netmask="255.255.255.0" gateway="10.214.254.254"/>
-      <link link_type="rootsh" host="10.214.254.47" port="22" username="hsvroot" password="BOSCO" netmask="255.255.255.0" gateway="10.214.254.254"/>
+      <link link_type="netconf" host="10.214.254.103" port="830" username="admin" password="password" netmask="255.255.255.0" gateway="10.214.254.254"/>
+      <link link_type="rootsh" host="10.214.254.103" port="22" username="hsvroot" password="BOSCO" netmask="255.255.255.0" gateway="10.214.254.254"/>
     </mgmt>
   </device>
-  <device id="ont_5" name="onu 4.0" product="ta_401" part_number="1287786F1" serial_number_string="ADTN18423D62"
-       cp="channel-partition 4391.4" preferred_channel_pair="channel 15" protection_channel_pair="channel 15"
-       provider_id="bng_1" provider_if_name="ae 32" service_name="TECH Service" outer_vlan_id="272" inner_vlan_id="2257">
+  <device id="tor_1" name="tor_1" product="sdx_8310_32">
+    <mgmt>
+      <link link_type="netconf" host="10.214.254.5" port="830" username="ocnos" password="ocnos" netmask="255.255.255.0" gateway="10.214.254.254"/>
+      <link link_type="rootsh" host="10.214.254.5" port="22" username="ocnos" password="ocnos" netmask="255.255.255.0" gateway="10.214.254.254"/>
+    </mgmt>
+  </device>
+  <device id="elmo3" product="elmo">
+    <mgmt>
+      <link link_type="telnet" host="10.214.254.198" port="23" username="elmo" password="elmo"/>
+    </mgmt>
+    <generator_port id="1"/>
+    <generator_port id="2"/>
+    <generator_port id="3"/>
+    <generator_port id="4"/>
   </device>
 </testbed>
