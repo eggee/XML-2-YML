@@ -5,7 +5,8 @@ import sys
 
 class Onu():
     """
-    This will format the new ONU Yaml entity which will look like below
+    This is use to create an 'instance' of each ONU found in the topology.
+    and will format the text necessary for it's Yaml entity; below
 
     onus:
     OBJECT-TYPE: "device"
