@@ -27,7 +27,8 @@ class Onu():
 
 class Olt():
     """
-    This will format the new ONU Yaml entity which will look like below
+    This is use to create an 'instance' of each OLT found in the topology.
+    and will format the text necessary for it's Yaml entity; below
 
     olts:
     model-name: "16-port TECH BOX"
@@ -60,8 +61,6 @@ try:
     XML = open(XML_Input)
 except IOError:
     sys.exit("Can't find the given input file, exiting gracefully")
-
-tree = ET.parse(XML_Input)
 
 tree = ET.parse(XML_Input)
 root = tree.getroot()
