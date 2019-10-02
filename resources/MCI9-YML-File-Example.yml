@@ -1,0 +1,125 @@
+#Below shows exactly how the yml file should look based on the xml input file (MCI9-XML-Input.xml)
+
+mcp:
+    ip: 10.27.39.27
+    username: "ADMIN"
+    password: "P@ssw0rd"
+
+test-setup:
+    worker-threads: 1
+
+root-to-tor-interfaces:
+    OBJECT-TYPE: "interface"
+    interface-type: "generic"
+    number-of-lower-layer-interfaces: 0
+    lower-layer-interfaces: []
+    INSTANCES:
+        - name: "Root-to-ToR"
+          interface-id: "1"
+          device-name: "rooted-device"
+
+tor:
+    OBJECT-TYPE: "device"
+    model-name: "SDX 8310 32x100 ToR Switch"
+    base-configuration: ""
+    management-domain-static-ipv4:
+        mask: "255.255.255.0"
+        gateway: "10.214.254.254"
+    INSTANCES:
+        - name: "MCI9-SDX-8310-ToR-1"
+          interface-name: "Root-to-ToR"
+          profile-name: "ToR Config Vector"
+          management-domain-static-ipv4:
+              ip-address: "10.214.254.5"
+
+tor-interfaces:
+    OBJECT-TYPE: "interface"
+    interface-type: "hundred-gigabit-ethernet"
+    number-of-lower-layer-interfaces: 0
+    lower-layer-interfaces: []
+    INSTANCES:
+        - name: "MCI9-ToR-1-to-GPON-OLT"
+          interface-id: "ce2/1"
+          device-name: "MCI9-SDX-8310-ToR-1"
+
+olts:
+    OBJECT-TYPE: "device"
+    model-name: "SDX 6010 16-port GPON OLT"
+    base-configuration: ""
+    management-domain-static-ipv4:
+        mask: "255.255.255.0"
+        gateway: "10.214.254.254"
+    INSTANCES:
+        - name: "MCI9-GPON-OLT"
+          interface-name: "MCI9-ToR-1-to-GPON-OLT"
+          profile-name: "PON Blade Config Vector"
+          management-domain-static-ipv4:
+              ip-address: "10.214.254.103"
+
+bundle:
+    OBJECT-TYPE: "bundle"
+    bundle-type: "channel-partition"
+    profile-name: ""
+    INSTANCES:
+        - name: "MCI9-GPON-CP-4391-4"
+          bundle-id: "4391/4"
+
+olt-ont-interfaces:
+    OBJECT-TYPE: "interface"
+    interface-type: "gpon"
+    number-of-lower-layer-interfaces: 1
+    profile-name: "XPON Profile Vector"
+    INSTANCES:
+        - name: "GPON-MCI9-00:03:01:01:15"
+          interface-id: "gpon 0/15"
+          device-name: "MCI9-GPON-OLT"
+          lower-layer-interfaces: ['channel 15']
+          bundle-name: "MCI9-GPON-CP-4391-4"
+
+onus:
+    OBJECT-TYPE: "device"
+    model-name: "401 GPON ONU"
+    base-configuration: ""
+    management-domain-external: {}
+    INSTANCES:
+        - name: "MCI9-ONU-5"
+          interface-names: ['GPON-MCI9-00:03:01:01:15']
+          object-parameters:
+              serial-number: "ADTN1842376C"
+              onu-id: "0"
+        - name: "MCI9-ONU-6"
+          interface-names: ['GPON-MCI9-00:03:01:01:15']
+          object-parameters:
+              serial-number: "ADTN14470B97"
+              onu-id: "1"
+
+subscriber-interfaces:
+    OBJECT-TYPE: "interface"
+    interface-type: "virtual-ethernet"
+    number-of-lower-layer-interfaces: 1
+    lower-layer-interfaces: []
+    INSTANCES:
+        - name: "MCI9-ONU-5-to-Subscriber"
+          interface-id: "virtual-ethernet 0/1"
+          device-name: "MCI9-ONU-5"
+        - name: "MCI9-ONU-6-to-Subscriber"
+          interface-id: "virtual-ethernet 0/1"
+          device-name: "MCI9-ONU-6"
+
+content-provider-interfaces:
+    OBJECT-TYPE: "interface"
+    interface-type: "generic"
+    number-of-lower-layer-interfaces: 1
+    lower-layer-interfaces: []
+    INSTANCES:
+        - name: "MCI9-ToR-1-to-GPON-Provider"
+          interface-id: "ce30/1"
+          device-name: "MCI9-SDX-8310-ToR-1"
+
+content-providers:
+    OBJECT-TYPE: "content-provider"
+    multipoint-outer-vlan-id: "untagged"
+    multipoint-inner-vlan-id: "none"
+    INSTANCES:
+        - name: "MCI9-GPON-Provider"
+          interface-name: "MCI9-ToR-1-to-GPON-Provider"
