@@ -3,6 +3,50 @@
 import xml.etree.ElementTree as ET
 import sys
 
+class Onu():
+    """
+    This will format the new ONU Yaml entity which will look like below
+
+    onus:
+    OBJECT-TYPE: "device"
+    model-name: "ta_401"
+    INSTANCES:
+        - name: "ont_5"
+          interface-names: ['TECH Service']
+          object-parameters:
+              serial-number: "ADTN18423D62"
+              onu-id: "5"
+    """
+    def __init__(self, model_name, name, interface_names, serial_number, onu_id):
+        self.model_name = model_name
+        self.name = name
+        self.interface_names = interface_names
+        self.serial_number = serial_number
+        self.onu_id = onu_id
+
+class Olt():
+    """
+    This will format the new ONU Yaml entity which will look like below
+
+    olts:
+    model-name: "16-port TECH BOX"
+    management-domain-static-ipv4:
+        mask: "255.255.255.0"
+        gateway: "10.214.254.254"
+    INSTANCES:
+        - name: "olt3"
+          management-domain-static-ipv4:
+              ip-address: "10.214.254.47"
+    """
+
+    def __init__(self, model_name, mask, gateway, name, ip_address):
+        self.model_name = model_name
+        self.mask = mask
+        self.gateway = gateway
+        self.name = name
+        self.ip_address = ip_address
+
+
 olt = str
 
 argCount = len(sys.argv)
